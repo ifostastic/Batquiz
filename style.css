@@ -33,7 +33,7 @@ text-shadow:
 }
 
 
-.start-form {
+.form {
 width: 400px;
 padding: 40px;
 background-color: white;
@@ -42,7 +42,7 @@ margin-right: auto;
 border-radius: 3px;
 }
 
-.start-form legend {
+.form legend {
 margin-bottom: 15px;
 font-size: 35px;
 margin-left: auto;
@@ -50,7 +50,7 @@ margin-right: auto;
 color: black;
 }
 
-.start-form button {
+.form button {
 display: block;
 margin-top: 30px;
 height: 55px;
@@ -65,7 +65,7 @@ font-size: 20px;
 font-weight: bold;
 }
 
-.start-form button:hover {
+.form button:hover {
 background: black;
 border: 2px solid gold;
 color: gold;
@@ -96,3 +96,12 @@ header {
       margin-bottom: 0;
       margin-left: 20px;
   }
+
+.option {
+      display: block;
+      margin-bottom: 15px;
+  }
+
+.radio {
+    display: inline-block;
+}

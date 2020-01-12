@@ -19,48 +19,19 @@
         </li>
     </ul>
     </header>   
-    <form class="start-form">
-        <fieldset name="start-info">
-          <legend>Get Ready!</legend>
-          <p id="splash-text">How much do you na-na-na-na-know about the Caped Crusader? Start the quiz below and test your Dark Knight Knowledge!</p>
-          <button type="submit">Start the quiz!</button>
-        </fieldset>
-    </form>
-    <h1>Question wire frame</h1>
-    <span id="question">Question 1/10</span>
-    <span id="score">Score: 0</span>
-    <form class="start-form">
-        <fieldset name="start-info">
-        <legend>Question 1</legend>
-        <p id="splash-text">What year did Batman first appear in comics?</p>
-        <span><input type="radio" name="answer" class="radio">1939</span>
-        <span><input type="radio" name="answer" class="radio">1945</span>
-        <span><input type="radio" name="answer" class="radio">1922</span>
-        <span><input type="radio" name="answer" class="radio">1968</span>
-        <button type="submit">Submit</button>
-        </fieldset>
-    </form>
-    <h1>Submit answer wire frame</h1>
-    <span id="question">Question 1/10</span>
-    <span id="score">Score: 1</span>
-    <form class="start-form">
-        <fieldset name="start-info">
-        <legend>Question 1</legend>
-        <p id="splash-text">What year did Batman first appear in comics?</p>
-        <span><input type="radio" name="answer" class="radio">1939</span>
-        <span><input type="radio" name="answer" class="radio">1945 <span id="correct-answer">That is correct!</span></span>
-        <span><input type="radio" name="answer" class="radio">1922</span>
-        <span><input type="radio" name="answer" class="radio">1968</span>
-        <button type="submit">Next Question</button>
-        </fieldset>
-    </form>    
-    <h1>Results wireframe</h1>
-    <form class="start-form">
-        <fieldset name="start-info">
-          <legend>Results</legend>
-          <p id="final-score">Final Score: 10</p>
-          <button type="submit">Restart the quiz!</button>
-        </fieldset>
-    </form>
+    <main role="main">
+        <form class="start form">
+            <fieldset name="start-info">
+            <legend>Get Ready!</legend>
+            <p id="splash-text">How much do you na-na-na-na-know about the Caped Crusader? Start the quiz below and test your Dark Knight Knowledge!</p>
+            <button type="button" id="start">Start the quiz!</button>
+            </fieldset>
+        </form>
+    </main>
+    <script
+     src="https://code.jquery.com/jquery-3.4.1.js"
+     integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
+     crossorigin="anonymous"></script>
+    <script src="script.js"></script>
 </body>
 </html>

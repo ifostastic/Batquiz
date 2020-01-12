@@ -89,49 +89,137 @@ const STORE = [
     }
 ];
 
+
+
 let score = 0; //will hold the score 
 let qNum = 0; //holds the current question number
 
+//Checks to see if we've exhausted our total questions; if not, renders the next question, if yes, displays the final score screen.
 function questionsLeft() {
-    //Checks to see if we've exhausted our total questions; if not, renders the next question, if yes, displays the final score screen.
+    if (qNum < STORE.length) {
+        return renderQuestion(qNum);
+    }
+    else {
+        finalScore();
+    }
 }
 
 function incScore() {
-    //Increments score by 1
+    score++;
+    $('#score').text(score);
 }
 
 function incQuestion() {
-    //Increments qNum by 1, to be pulled by nextSlide()
+    qNum++;
+    $('#questionNum').text(qNum + 1);
 }
 
 function startQuiz() {
-    //Begins a quiz by rendering the first question
+    $('#start').on('click', function(event){
+        $('#questionNum').text(1);
+        questionsLeft();
+    }
+    );
+}
+//Renders the next question with data from STORE
+function renderQuestion(num) {
+    let questionRender = $(`
+    <form class="question form">
+        <fieldset name="start-info">
+            <p id="splash-text">${STORE[num].question}</p>
+        </fieldset>
+    </form>
+    `)
+
+    let optionsRender = $(questionRender).find('fieldset');
+
+    STORE[num].answers.forEach(function (answerVal, answerIndex) {
+        $(`<span class="option"><input class="radio" type="radio" id="${answerIndex}" value="${answerVal}" name="answer" required>${answerVal}</span>`).appendTo(optionsRender);
+    });
+    $(`<button type="submit" id="submit">Submit Answer</button>`).appendTo(optionsRender);
+    $("main").html(questionRender);
 }
 
-function renderQuestion() {
-    //Renders the next question with data from STORE
-}
 
 function checkAnswer() {
-    //Checks the users answer against the correctAnswer 
+    $('body').on('click', '#submit', function(event) {
+        event.preventDefault();
+        let selection = $('input:checked');
+        let userAns = selection.val();
+        let correctAns = STORE[qNum].correctAnswer;
+        if (answer === correct) {
+            correctAnswer();
+        }
+        else {
+            wrongAnswer();
+        }
+    });
 }
 
 function correctAnswer() {
-    //Displays correct answer, calls incScore
+    let correctRender = $(`
+    <form class="answer form">
+        <fieldset name="start-info">
+            <p id="right-text">Good job! That is the correct answer!</p>
+            <button type="submit" id="next">Next Question</button>
+        </fieldset>
+    </form>
+    `);
+    incScore();
+    $("main").html(correctRender);
 }
 
 function wrongAnswer() {
-    //Displays correct answer, does not incScore
+    let wrongRender = $(`
+    <form class="answer form">
+        <fieldset name="start-info">
+            <p id="wrong-text">Sorry, that is wrong. The correct answer is:</p>
+            <p id="answer-text">${STORE[qNum].correctAnswer}</p>
+            <button type="submit" id="next">Next Question</button>
+        </fieldset>
+    </form>
+    `);
+    $("main").html(wrongRender);
 }
 
 function nextQuestion() {
-    //Updates question number. Runs questionsLeft
+    $('body').on('click', '#next', function(event) {
+        incQuestion();
+        questionsLeft();
+    });
 }
 
 function finalScore() {
-    //Displays results
+    let finalRender = $(`<form class="final form">
+    <fieldset name="start-info">
+        <p id="final-text">All done! Your score is ${score}</p>
+        <button type="submit" id="restart">Restart Quiz</button>
+    </fieldset>
+</form>
+    `)
+}
+
+function resetStats() {
+    //Resets qNum and score to default values for a restarted quiz
+    score = 0;
+    qNum = 0;
+    $('#score').text(0);
+    $('#questionNum').text(0);
 }
 
 function restartQuiz() {
-    //Allows the user to restart the quiz
+    $('body').on('click', '#restart', function(event) {
+        resetStats();
+        questionsLeft();
+    })
 }
+
+function quizTime() {
+    startQuiz();
+    renderQuestion();
+    checkAnswer();
+    nextQuestion();
+    restartQuiz();
+}
+
+$(quizTime);
