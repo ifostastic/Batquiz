@@ -12,7 +12,7 @@ const STORE = [
     },
     //2
     {
-        question: 'What is the name of Batman\'s car?',
+        question: "What is the name of Batman's car?",
         answers: [
             'The Batcar',
             'The Batwhip',
@@ -23,7 +23,7 @@ const STORE = [
     },
     //3
     {
-        question: 'Who is Batman\'s sidekick?',
+        question: "Who is Batman's sidekick?",
         answers: [
             'Batboy',
             'Sparrow',
@@ -67,7 +67,7 @@ const STORE = [
     },
     //7
     {
-        question: 'What is the name of Bruce Wayne\'s loyal butler?',
+        question: "What is the name of Bruce Wayne's loyal butler?",
         answers: [
             'Manfred Buttersworth',
             'Alfred Pennyworth',
@@ -116,25 +116,26 @@ function incQuestion() {
 
 function startQuiz() {
     $('#start').on('click', function(event){
+        event.preventDefault;
         $('#questionNum').text(1);
         questionsLeft();
     }
     );
 }
 //Renders the next question with data from STORE
-function renderQuestion(num) {
+function renderQuestion(qIndex) {
     let questionRender = $(`
     <form class="question form">
         <fieldset name="start-info">
-            <p id="splash-text">${STORE[num].question}</p>
+            <p id="splash-text">${STORE[qIndex].question}</p>
         </fieldset>
     </form>
     `)
 
     let optionsRender = $(questionRender).find('fieldset');
 
-    STORE[num].answers.forEach(function (answerVal, answerIndex) {
-        $(`<span class="option"><input class="radio" type="radio" id="${answerIndex}" value="${answerVal}" name="answer" required>${answerVal}</span>`).appendTo(optionsRender);
+    STORE[qIndex].answers.forEach(function (answerValue, answerIndex) {
+        $(`<input class="radio" type="radio" id="${answerIndex}" value="${answerValue}" name="answer" required><span class="option">${answerValue}</span>`).appendTo(optionsRender);
     });
     $(`<button type="submit" id="submit">Submit Answer</button>`).appendTo(optionsRender);
     $("main").html(questionRender);
