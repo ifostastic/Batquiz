@@ -87,4 +87,51 @@ const STORE = [
         ],
         correctAnswer: 'Bob Kane & Bill Finger'
     }
-]
+];
+
+let score = 0; //will hold the score 
+let qNum = 0; //holds the current question number
+
+function questionsLeft() {
+    //Checks to see if we've exhausted our total questions; if not, renders the next question, if yes, displays the final score screen.
+}
+
+function incScore() {
+    //Increments score by 1
+}
+
+function incQuestion() {
+    //Increments qNum by 1, to be pulled by nextSlide()
+}
+
+function startQuiz() {
+    //Begins a quiz by rendering the first question
+}
+
+function renderQuestion() {
+    //Renders the next question with data from STORE
+}
+
+function checkAnswer() {
+    //Checks the users answer against the correctAnswer 
+}
+
+function correctAnswer() {
+    //Displays correct answer, calls incScore
+}
+
+function wrongAnswer() {
+    //Displays correct answer, does not incScore
+}
+
+function nextQuestion() {
+    //Updates question number. Runs questionsLeft
+}
+
+function finalScore() {
+    //Displays results
+}
+
+function restartQuiz() {
+    //Allows the user to restart the quiz
+}
