@@ -197,7 +197,7 @@ function nextQuestion() {
 function finalScore() {
     let finalRender = $(`<form class="final form">
     <fieldset name="start-info">
-        <p id="final-text">All done!<br> Your score is:<br>${score}/10<br>Try again?</p>
+        <p id="final-text">All done!<br> Your score is:<br>${score}/8<br>Try again?</p>
         <button type="submit" id="restart">Restart Quiz</button>
     </fieldset>
 </form>
