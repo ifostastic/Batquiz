@@ -82,26 +82,44 @@ header {
       margin-bottom: 0px;
   }
 
-  #final-score {
+#final-score {
     margin-bottom: 15px;
     font-size: 20px;
     margin-left: auto;
     margin-right: auto;
     color: black;
-  }
+}
 
-  #correct-answer {
-      display: inline-block;
-      color: green;
-      margin-bottom: 0;
-      margin-left: 20px;
-  }
+#splash-text {
+    font-size: 18px;
+}
+
+#quest-text, #wrong-text, #right-text, #final-text {
+    font-size: 20px;
+    text-align: center;
+}
+
+#right-text, #final-text {
+    margin-bottom: 75px;
+    margin-top: 75px;
+}
+
+#answer-text {
+    text-align: center;
+    color: red;
+    margin-bottom: 0;
+    font-size: 25px;
+    font-weight: bold;    
+    margin-right: 10px;  
+}
 
 .option {
-      display: block;
-      margin-bottom: 15px;
-  }
+    display: block;
+    margin-bottom: 15px;
+}
 
 .radio {
     display: inline-block;
+    margin-right: 10px;
+    margin-top: 10px;
 }

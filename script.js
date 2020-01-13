@@ -100,6 +100,7 @@ function questionsLeft() {
         renderQuestion(qNum);
     }
     else {
+        $('#questionNum').text(8);
         finalScore();
     }
 }
@@ -127,7 +128,7 @@ function renderQuestion(qIndex) {
     let questionRender = $(`
     <form class="question form">
         <fieldset name="start-info">
-            <p id="splash-text">${STORE[qIndex].question}</p>
+            <p id="quest-text">${STORE[qIndex].question}</p>
         </fieldset>
     </form>
     `)
@@ -163,8 +164,8 @@ function correctAnswer() {
     let correctRender = $(`
     <form class="answer form">
         <fieldset name="start-info">
-            <p id="right-text">Good job! That is the correct answer!</p>
-            <button type="submit" id="next">Next Question</button>
+            <p id="right-text">Good job!<br>That is the correct answer!</p>
+            <button type="submit" id="next">Next</button>
         </fieldset>
     </form>
     `);
@@ -176,9 +177,9 @@ function wrongAnswer() {
     let wrongRender = $(`
     <form class="answer form">
         <fieldset name="start-info">
-            <p id="wrong-text">Sorry, that is wrong. The correct answer is:</p>
+            <p id="wrong-text">Sorry, that is wrong.<br>The correct answer is:</p>
             <p id="answer-text">${STORE[qNum].correctAnswer}</p>
-            <button type="submit" id="next">Next Question</button>
+            <button type="submit" id="next">Next</button>
         </fieldset>
     </form>
     `);
@@ -196,7 +197,7 @@ function nextQuestion() {
 function finalScore() {
     let finalRender = $(`<form class="final form">
     <fieldset name="start-info">
-        <p id="final-text">All done! Your score is ${score}/10</p>
+        <p id="final-text">All done!<br> Your score is:<br>${score}/10<br>Try again?</p>
         <button type="submit" id="restart">Restart Quiz</button>
     </fieldset>
 </form>
@@ -215,7 +216,7 @@ function resetStats() {
 function restartQuiz() {
     $('body').on('click', '#restart', function(event) {
         resetStats();
-        questionsLeft();
+        startQuiz();
     })
 }
 
