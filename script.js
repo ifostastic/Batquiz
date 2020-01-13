@@ -97,7 +97,7 @@ let qNum = 0; //holds the current question number
 //Checks to see if we've exhausted our total questions; if not, renders the next question, if yes, displays the final score screen.
 function questionsLeft() {
     if (qNum < STORE.length) {
-        return renderQuestion(qNum);
+        renderQuestion(qNum);
     }
     else {
         finalScore();
@@ -135,21 +135,23 @@ function renderQuestion(qIndex) {
     let optionsRender = $(questionRender).find('fieldset');
 
     STORE[qIndex].answers.forEach(function (answerValue, answerIndex) {
-        $(`<input class="radio" type="radio" id="${answerIndex}" value="${answerValue}" name="answer" required><span class="option">${answerValue}</span>`).appendTo(optionsRender);
+        $(`<span class="option"><input class="radio" type="radio" id="${answerIndex}" value="${answerValue}" name="answer" required>${answerValue}</span>`).appendTo(optionsRender);
     });
-    $(`<button type="submit" id="submit">Submit Answer</button>`).appendTo(optionsRender);
+    $(`<button type="submit" id="submit" >Submit Answer</button>`).appendTo(optionsRender);
     $("main").html(questionRender);
 }
-
 
 function checkAnswer() {
     $('body').on('click', '#submit', function(event) {
         event.preventDefault();
-        let selection = $('input:checked');
-        let userAns = selection.val();
+        let userAns = $('input[name=answer]:checked').val();
+        if (!userAns) {
+            alert("Please pick a choice.");
+            return;
+        }
         let correctAns = STORE[qNum].correctAnswer;
-        if (answer === correct) {
-            correctAnswer();
+        if (userAns === correctAns) {
+            correctAnswer();   
         }
         else {
             wrongAnswer();
@@ -185,6 +187,7 @@ function wrongAnswer() {
 
 function nextQuestion() {
     $('body').on('click', '#next', function(event) {
+        event.preventDefault();
         incQuestion();
         questionsLeft();
     });
@@ -193,11 +196,12 @@ function nextQuestion() {
 function finalScore() {
     let finalRender = $(`<form class="final form">
     <fieldset name="start-info">
-        <p id="final-text">All done! Your score is ${score}</p>
+        <p id="final-text">All done! Your score is ${score}/10</p>
         <button type="submit" id="restart">Restart Quiz</button>
     </fieldset>
 </form>
     `)
+    $('main').html(finalRender);
 }
 
 function resetStats() {
@@ -217,7 +221,6 @@ function restartQuiz() {
 
 function quizTime() {
     startQuiz();
-    renderQuestion();
     checkAnswer();
     nextQuestion();
     restartQuiz();
